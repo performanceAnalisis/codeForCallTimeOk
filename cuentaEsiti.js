@@ -5,6 +5,8 @@ var tabla= document.getElementById("gridview-1023-table");
 var sumSegundos= 0;
 var sumSegundosOK= 0;
 var sumSegundosError= 0;
+var cantOK= 0 ;
+ 
 
 
 
@@ -54,10 +56,12 @@ for (i = 1; i < tabla.rows.length; i++){
 
 
 	if (filaStr[9]==="OK"){
-
+		
+		cantOK ++ ;
 		arr= filaStr[5].split(":");     //el 5 es el tiempo el 9 es la nota
 		callSegundos= arr[0]*3600 + arr[1]*60 + (+arr[2]);
 		sumSegundosOK = callSegundos + sumSegundosOK;
+		
 
 		hours = Math.floor(sumSegundosOK / 3600);
 		minutes = Math.floor((sumSegundosOK - (hours * 3600)) / 60);
@@ -103,10 +107,25 @@ for (i = 1; i < tabla.rows.length; i++){
 
 	}
 
+//Calculos media OK 
+var mediaOK = sumSegundosOK / cantOK ;   //en segundos 
+
+//lo paso a formato hh:mm:ss
+
+hours = Math.floor( mediaOK / 3600);
+		minutes = Math.floor((mediaOK - (hours * 3600)) / 60);
+		seconds = mediaOK - (hours * 3600) - (minutes * 60);
+
+var mediaOKString = hours.toString().padStart(2, '0') + ':' +
+minutes.toString().padStart(2, '0') + ':' +
+seconds.toString().padStart(2, '0');
+
+
+
 
 
 alert("Total: "+timeResultadoString+" / "+ dimension +"\n"
-+"OK: "+timeResultadoStringOK +" / "+ Math.floor((sumSegundosOK/sumSegundos)*100) + " % "+"\n"
++"OK: "+timeResultadoStringOK +" / "+ Math.floor((sumSegundosOK/sumSegundos)*100) + " % "+" / "+cantOK+ "/ "+"Media: "+mediaOKString+"\n"
 +"Error: "+timeResultadoStringError+" / "+ Math.floor((sumSegundosError/sumSegundos)*100) + " % "+"\n"
 
 )
