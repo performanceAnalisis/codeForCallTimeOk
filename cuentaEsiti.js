@@ -8,6 +8,7 @@ var sumSegundosError= 0;
 
 
 
+
 var dimension= tabla.rows.length;
 
 
@@ -67,6 +68,8 @@ for (i = 1; i < tabla.rows.length; i++){
 			seconds.toString().padStart(2, '0');
 		}
 
+		
+
 	}
 
 
@@ -102,7 +105,11 @@ for (i = 1; i < tabla.rows.length; i++){
 
 
 
-alert("Tiempo al telefono: "+timeResultadoString+"\n"+"Cantidad de llamadas:  "+dimension+"\n"+"Tiempo OK: "+timeResultadoStringOK+"\n"+"Tiempo Error: "+timeResultadoStringError)
+alert("Total: "+timeResultadoString+" / "+ dimension +"\n"
++"OK: "+timeResultadoStringOK +" / "+ Math.floor((sumSegundosOK/sumSegundos)*100) + " % "+"\n"
++"Error: "+timeResultadoStringError+" / "+ Math.floor((sumSegundosError/sumSegundos)*100) + " % "+"\n"
+
+)
 
  
 }
