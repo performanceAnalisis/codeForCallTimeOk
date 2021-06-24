@@ -1,0 +1,41 @@
+
+//Para interactuar con el clipboard 
+
+document.getElementById("startText").select();
+var didSucceed = document.execCommand('paste');
+
+
+metodo .click
+
+ejemplo click + delay
+
+
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<p>Click the button to search a string for "W3Schools", and display the position of the match.</p>
+
+<button id="boton" onclick="myFunction()">Try it</button>
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var str = "Visit W3Schools!"; 
+  var n = str.search("W3Schools");
+  document.getElementById("demo").innerHTML = n;
+  setTimeout(() => { document.getElementById("demo").innerHTML = "jaime" ; }, 2000);
+  setTimeout(() => { document.getElementById("boton").click(); }, 3000);
+}
+
+
+
+</script>
+
+</body>
+</html>
+
+
+
