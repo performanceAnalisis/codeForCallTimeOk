@@ -38,4 +38,87 @@ function myFunction() {
 </html>
 
 
+-----------------------------
+
+
+(function(window, document, undefined){
+
+// code that should be taken care of right away
+
+window.onload = tiempoTelLiteOK;
+
+  function tiempoTelLiteOK(){
+    let tabla= document.getElementById("gridview-1023-table");
+let sumSegundos= 0;
+let sumSegundosOK= 0;
+
+let dimension= tabla.rows.length;
+
+
+ 
+for (i = 1; i < tabla.rows.length; i++){
+
+ 
+	let fila = document.getElementById("gridview-1023-record-ext-record-"+i)  //ultimo numero es la fila desde 0
+
+	let filaStr= fila.innerText.split("\n"); //convierto fila en string
+	
+
+	//suma todos por igual
+	arr= filaStr[5].split(":");     //el 5 es el tiempo el 9 es la nota
+	callSegundos= arr[0]*3600 + arr[1]*60 + (+arr[2]);
+	sumSegundos = callSegundos + sumSegundos;
+
+	//termina suma en segundos y ahora los pasa hh:mmm:ss
+
+	hours = Math.floor(sumSegundos / 3600);
+	minutes = Math.floor((sumSegundos - (hours * 3600)) / 60);
+	seconds = sumSegundos - (hours * 3600) - (minutes * 60);
+
+	//aca arma el string
+
+	let timeResultadoString = hours.toString().padStart(2, '0') + ':' +
+      	minutes.toString().padStart(2, '0') + ':' +
+      	seconds.toString().padStart(2, '0');
+
+	}
+
+	//-----------------------------------------------------------------------
+	//a partir de aqui codigo suma los ok
+	//if filaStr[9]==="OK" suma / else sigue
+
+	for (i = 1; i < tabla.rows.length; i++){
+
+ 
+		let fila = document.getElementById("gridview-1023-record-ext-record-"+i)  //ultimo numero es la fila desde 0
+	
+		let filaStr= fila.innerText.split("\n"); //convierto fila en string
+
+
+
+	if (filaStr[9]==="OK"){
+
+		arr= filaStr[5].split(":");     //el 5 es el tiempo el 9 es la nota
+		callSegundos= arr[0]*3600 + arr[1]*60 + (+arr[2]);
+		sumSegundosOK = callSegundosOK + sumSegundosOK;
+
+		hours = Math.floor(sumSegundos / 3600);
+		minutes = Math.floor((sumSegundos - (hours * 3600)) / 60);
+		seconds = sumSegundos - (hours * 3600) - (minutes * 60);
+
+		let timeResultadoStringOK = hours.toString().padStart(2, '0') + ':' +
+			minutes.toString().padStart(2, '0') + ':' +
+			seconds.toString().padStart(2, '0');
+		}
+
+	}
+
+
+alert("Tiempo al telefono: "+timeResultadoString+"\n"+"Cantidad de llamadas:  "+dimension+"\n"+"Tiempo OK: "+timeResultadoStringOK)
+
+  }
+
+})(window, document, undefined);
+
+
 
